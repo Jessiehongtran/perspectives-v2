@@ -14,6 +14,9 @@ const chars = [
             "https://www.pinclipart.com/picdir/big/449-4493955_use-your-7-day-free-trial-to-build.png",
             "https://lh3.googleusercontent.com/proxy/6QfZd2YYdSE5K5KBMsL0CtmBbezHN0F7_2_JgEmy9Ij646UHBFdpNKz02Bc-cerjsLzyJbmmYolIOiI2KsrcuRcz"
         ],
+        facts: [
+            "a software developer", "love cat", "love to speak up in meetings if she does not agree"
+        ],
         avatar: "https://res.cloudinary.com/dfulxq7so/image/upload/v1613262323/yang_oyy0oi.svg",
     },
     {
@@ -41,6 +44,7 @@ let envImgSize = {
 }
 
 let env 
+let facts
 
 const container = document.getElementsByClassName('container')[0]
 const char = document.getElementsByClassName('character')[0]
@@ -70,6 +74,7 @@ if (selectedCharInd){
     for (let j = 0; j < chars.length; j++){
         if (chars[j].id === parseInt(selectedCharInd)){
             env = chars[j].environment
+            facts = chars[j].facts
             for (let k = 0; k < env.length; k++){
                 container.appendChild(env[k].image)
             }
@@ -79,6 +84,7 @@ if (selectedCharInd){
 }
 
 let landed = false
+let factInd = 0
 
 function landingEffect(){
     if (charPos.y > 50 && !landed){
@@ -101,8 +107,8 @@ let slideInd = 0
 
 
 function slide(){
-
-    if (slideInd < 100){
+    console.log(slideInd)
+    if (slideInd < 40){
         for (let i = 0; i < env.length; i++){
             if (env[i].image){
                 env[i].x -= slideInd
@@ -113,6 +119,8 @@ function slide(){
         }
         slideInd += 1
         setTimeout(slide, 300)
+    } else {
+        showFacts()
     }
 
 }
@@ -127,6 +135,51 @@ function showChar(){
         // landingEffect()
     }
 
+}
+
+let currentFact 
+let currentFactCoors = {}
+let travelY = 100
+let nextFact = true
+
+function travelBottomToTop(){
+    if (travelY > currentFactCoors.y){
+        nextFact = false
+        travelY -= 2
+        currentFact.style.top = `${travelY}%`
+        setTimeout(travelBottomToTop, 20)
+        
+    } else {
+        nextFact = true
+    }
+}
+
+function showFacts(){
+    if (factInd < facts.length){
+        let div = document.createElement('div')
+        div.innerHTML = facts[factInd]
+        currentFact = div
+        let xCor = Math.floor(Math.random()*80) + 40
+        let yCor = Math.floor(Math.random()*(40 + factInd*10)) + factInd*5
+        currentFactCoors = {
+            x: xCor,
+            y: yCor
+        }
+        travelY = 100
+        div.style.position = "absolute"
+        div.style.left = `${xCor}%`
+        div.style.padding = "8px 30px"
+        div.style.borderRadius = "14px"
+        div.style.fontSize = "22px"
+        div.style.backgroundColor = "white"
+        div.style.color = "black"
+        container.appendChild(div)
+        travelBottomToTop()
+        if (nextFact){
+            setTimeout(showFacts, 60)
+        }
+        factInd += 1
+    }
 }
 
 showChar()

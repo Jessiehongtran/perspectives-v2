@@ -2,6 +2,10 @@ body {
     margin: 0
 }
 
+.container {
+    background-color: #474444;
+}
+
 .character {
     width: 8%;
     transition: all 0.3s ease-in-out;
