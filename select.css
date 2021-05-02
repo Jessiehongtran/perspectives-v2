@@ -1,0 +1,33 @@
+body {
+    margin: 0
+}
+
+.each-bias {
+    margin-right: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bias-visual {
+    max-width: 400px;
+    height: 200px;
+    margin-bottom: 30px;
+}
+
+.bias-cate {
+    border-radius: 50px;
+    background-color: black;
+    color: white;
+    padding: 10px 30px;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    
+    
+}
+
+a {
+    text-decoration: none;
+    color: inherit
+}

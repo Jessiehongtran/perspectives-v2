@@ -1,0 +1,18 @@
+body {
+    margin: 0
+}
+
+.name {
+    font-weight: bold;
+    color: goldenrod
+}
+.textMessage {
+    background-color: #585353;
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    color: goldenrod;
+    min-width: 350px;
+    max-width: 350px;
+}

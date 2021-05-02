@@ -1,0 +1,16 @@
+body {
+    margin: 0
+}
+
+.start-btn:hover {
+    box-shadow: inset 0 0 0 25px #53a7ea;
+}
+
+.start-btn {
+    font-family: 'Poppins', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit
+}

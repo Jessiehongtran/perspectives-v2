@@ -1,0 +1,8 @@
+body {
+    margin: 0
+}
+
+.character {
+    width: 8%;
+    transition: all 0.3s ease-in-out;
+}
