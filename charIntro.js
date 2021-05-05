@@ -155,7 +155,7 @@ function travelBottomToTop(){
 }
 
 function showFacts(){
-    if (factInd < facts.length){
+    if (factInd < facts.length + 1){
         let div = document.createElement('div')
         div.innerHTML = facts[factInd]
         currentFact = div
