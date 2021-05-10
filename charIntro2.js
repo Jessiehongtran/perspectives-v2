@@ -81,16 +81,19 @@ function getCharacterWalkStep(){
 }
 
 let changeX
+let accuChangeX = 0
 
 
 function handleKeyDown(e){
     let bgImages = document.getElementsByClassName('bgImage')
     if (e.key === "d"){
         changeX = -5
+        accuChangeX -= 5
         character.style.transform = `rotateY(360deg)`
 
     } else if (e.key === "a"){
         changeX = +5
+        accuChangeX += 5
         character.style.transform = `rotateY(180deg)`
     } 
     for (let i = 0; i< scenes.length; i++){
@@ -113,6 +116,11 @@ function handleKeyDown(e){
             showText()
             scenes[i].showText = true
         }
+    }
+    console.log(accuChangeX)
+
+    if (accuChangeX < -190){
+        window.location.href = './office.html'
     }
     getCharacterWalkStep()
 }
