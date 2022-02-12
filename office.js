@@ -210,6 +210,9 @@ function showButtons(){
         }
     } else {
         userInput.style.display = 'none'
+        setTimeout(function(){
+            window.location.href = './followup.html'
+        }, 3000)
     }
 
 }

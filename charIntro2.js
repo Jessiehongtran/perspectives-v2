@@ -33,6 +33,11 @@ const scenes = [
         h: 22,
         text: "in a tech company",
         showText: false
+    },
+    {
+        img: "https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/76480/doorway-clipart-xl.png",
+        w: 20,
+        h: 50,
     }
 ]
 
@@ -49,7 +54,11 @@ for (let i = 0; i < scenes.length; i++){
         scenes[i].x = bgStartPos.x
     }
     scenes[i].originX = scenes[i].x 
-    scenes[i].y = bgStartPos.y
+    if (scenes[i].text){
+        scenes[i].y = bgStartPos.y
+    } else {
+        scenes[i].y = bgStartPos.y - 25
+    }
     bg.style.left = `${scenes[i].x}%`
     bg.style.bottom = `${scenes[i].y}%`
     bg.style.width = `${scenes[i].w}%`
@@ -101,7 +110,8 @@ function handleKeyDown(e){
         bgImages[i].style.left = `${scenes[i].x}%`
         bgImages[i].style.bottom = `${scenes[i].y}%`
         let flexNum = 50
-        if (!textIsBeingShown && !scenes[i].showText && scenes[i].x < scenes[i].originX - scenes[i].w - i*flexNum){
+        if (!textIsBeingShown && !scenes[i].showText && scenes[i].text && scenes[i].x < scenes[i].originX - scenes[i].w - i*flexNum){
+            console.log(scenes[i].text)
             curTextEl = document.createElement('div')
             curTextEl.style.padding = '8px 20px'
             curTextEl.style.borderRadius = '8px'
@@ -115,11 +125,10 @@ function handleKeyDown(e){
             container.appendChild(curTextEl)
             showText()
             scenes[i].showText = true
-        }
+        } 
     }
-    console.log(accuChangeX)
 
-    if (accuChangeX < -190){
+    if (accuChangeX < -185){
         window.location.href = './office.html'
     }
     getCharacterWalkStep()
